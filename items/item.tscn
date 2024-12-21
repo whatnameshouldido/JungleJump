@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://dfyx6ea6h1o52"]
+
+[ext_resource type="Texture2D" uid="uid://fd826g1362cm" path="res://assets/sprites/cherry.png" id="1_a8bds"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_e4di5"]
+
+[node name="Item" type="Area2D"]
+collision_layer = 8
+collision_mask = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_a8bds")
+hframes = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, 0)
+shape = SubResource("CircleShape2D_e4di5")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
