@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=4 uid="uid://dd7cyyiaau0uk"]
+[gd_scene load_steps=9 format=4 uid="uid://dd7cyyiaau0uk"]
 
 [ext_resource type="Script" path="res://levels/level_base.gd" id="1_ixjr5"]
 [ext_resource type="TileSet" uid="uid://dhxw3f8l2saqn" path="res://assets/tilesets/tiles_world.tres" id="1_vp7jl"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bu20la1bflpt3" path="res://assets/environment/middle.png" id="3_3rka7"]
 [ext_resource type="TileSet" uid="uid://blhd0ogpuydej" path="res://assets/tilesets/tiles_spikes.tres" id="3_xdvmq"]
 [ext_resource type="PackedScene" uid="uid://b4wr6mb3q7eam" path="res://scenes/player.tscn" id="4_ny2lc"]
+[ext_resource type="PackedScene" uid="uid://bxdatv0ylsutd" path="res://enemies/enemy.tscn" id="8_ofa5t"]
 
 [node name="LevelBase" type="Node2D"]
 script = ExtResource("1_ixjr5")
@@ -18,16 +19,20 @@ motion_scale = Vector2(0.2, 1)
 motion_mirroring = Vector2(576, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2(-165, -129)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("2_lprnd")
 centered = false
+offset = Vector2(0, -90)
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.6, 1)
+motion_mirroring = Vector2(880, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
 texture_repeat = 3
 texture = ExtResource("3_3rka7")
+centered = false
+offset = Vector2(0, -90)
 region_enabled = true
 region_rect = Rect2(0, 0, 880, 368)
 
@@ -44,3 +49,9 @@ tile_set = ExtResource("3_xdvmq")
 [node name="Player" parent="." instance=ExtResource("4_ny2lc")]
 
 [node name="SpawnPoint" type="Marker2D" parent="."]
+
+[node name="Enemy" parent="." instance=ExtResource("8_ofa5t")]
+
+[node name="Enemy2" parent="." instance=ExtResource("8_ofa5t")]
+
+[node name="Enemy3" parent="." instance=ExtResource("8_ofa5t")]
