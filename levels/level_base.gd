@@ -1,6 +1,6 @@
 extends Node2D
 
-signal score_changed
+signal score_changed(value)
 
 var item_scene = load("res://items/item.tscn")
 

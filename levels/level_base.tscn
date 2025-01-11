@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://dd7cyyiaau0uk"]
+[gd_scene load_steps=10 format=4 uid="uid://dd7cyyiaau0uk"]
 
 [ext_resource type="Script" path="res://levels/level_base.gd" id="1_ixjr5"]
 [ext_resource type="TileSet" uid="uid://dhxw3f8l2saqn" path="res://assets/tilesets/tiles_world.tres" id="1_vp7jl"]
@@ -8,6 +8,7 @@
 [ext_resource type="TileSet" uid="uid://blhd0ogpuydej" path="res://assets/tilesets/tiles_spikes.tres" id="3_xdvmq"]
 [ext_resource type="PackedScene" uid="uid://b4wr6mb3q7eam" path="res://scenes/player.tscn" id="4_ny2lc"]
 [ext_resource type="PackedScene" uid="uid://bxdatv0ylsutd" path="res://enemies/enemy.tscn" id="8_ofa5t"]
+[ext_resource type="PackedScene" uid="uid://c62ftgwf4sb07" path="res://UI/hud.tscn" id="9_35qd0"]
 
 [node name="LevelBase" type="Node2D"]
 script = ExtResource("1_ixjr5")
@@ -43,7 +44,7 @@ tile_set = ExtResource("1_vp7jl")
 [node name="Items" type="TileMapLayer" parent="."]
 tile_set = ExtResource("2_h8qhd")
 
-[node name="Danger" type="TileMapLayer" parent="."]
+[node name="Danger" type="TileMapLayer" parent="." groups=["danger"]]
 tile_set = ExtResource("3_xdvmq")
 
 [node name="Player" parent="." instance=ExtResource("4_ny2lc")]
@@ -55,3 +56,10 @@ tile_set = ExtResource("3_xdvmq")
 [node name="Enemy2" parent="." instance=ExtResource("8_ofa5t")]
 
 [node name="Enemy3" parent="." instance=ExtResource("8_ofa5t")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HUD" parent="CanvasLayer" instance=ExtResource("9_35qd0")]
+
+[connection signal="score_changed" from="." to="CanvasLayer/HUD" method="update_score"]
+[connection signal="life_changed" from="Player" to="CanvasLayer/HUD" method="update_life"]

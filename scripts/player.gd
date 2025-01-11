@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-signal life_changed
+signal life_changed(value)
 signal died
 
 @export var gravity = 750
@@ -10,6 +10,7 @@ signal died
 enum {IDLE, RUN, JUMP, HURT, DEAD}
 var state = IDLE
 var life = 3: set = set_life
+var is_god: bool = false
 
 func _ready():
 	change_state(IDLE)
@@ -33,6 +34,8 @@ func change_state(new_state):
 		DEAD:
 			died.emit()
 			hide()
+			is_god = true
+			$GodModeTimer.stop()
 			
 func get_input():
 	if state == HURT:
@@ -98,5 +101,10 @@ func set_life(value):
 		change_state(DEAD)
 
 func hurt():
-	if state != HURT:
+	if not is_god and state != HURT:
+		is_god = true
+		$GodModeTimer.start()
 		change_state(HURT)
+
+func _on_god_mode_timer_timeout():
+	is_god = false # Replace with function body.
