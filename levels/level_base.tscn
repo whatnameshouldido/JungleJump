@@ -62,4 +62,5 @@ tile_set = ExtResource("3_xdvmq")
 [node name="HUD" parent="CanvasLayer" instance=ExtResource("9_35qd0")]
 
 [connection signal="score_changed" from="." to="CanvasLayer/HUD" method="update_score"]
+[connection signal="died" from="Player" to="." method="_on_player_died"]
 [connection signal="life_changed" from="Player" to="CanvasLayer/HUD" method="update_life"]
